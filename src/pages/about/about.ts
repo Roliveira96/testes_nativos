@@ -22,6 +22,8 @@ export class AboutPage {
   resp_coords: any;
   latitude: any;
   longitude: any;
+  accuracy:any;
+  speed:any;
   map: GoogleMap;
 
 
@@ -99,6 +101,8 @@ export class AboutPage {
         this.resp_coords = resp.coords;
         this.latitude = this.resp_coords.latitude;
         this.longitude = this.resp_coords.longitude;
+        this.accuracy = this.resp_coords.accuracy;
+        this.speed = this.resp_coords.speed;
 
         this.resp_coords = resp.coords;
         console.log(resp);
@@ -106,6 +110,18 @@ export class AboutPage {
       console.log('Erro ao recuperar sua posição');
       console.log(error);
     });
+
+    let watch = this.geolocation.watchPosition();
+    watch
+      .subscribe((resp) => {
+        this.resp_coords = resp.coords;
+        this.latitude = this.resp_coords.latitude;
+        this.longitude = this.resp_coords.longitude;
+        this.speed = this.resp_coords.speed;
+        this.accuracy = this.resp_coords.accuracy;
+      },(error) => {
+        console.log(error);
+      });
 
   }
 }
