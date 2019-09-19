@@ -34,7 +34,7 @@ export class AboutPage {
 
   loadMap() {
 
-    let api_key = 'AIzaSyB5kxJ96SiNeyfJFtxzomK16EOEqFjqtVY'
+    let api_key = 'AIzaSyB5kxJ96SiNeyfJFtxzomK16EOEqFjqtVY';
     Environment.setEnv({
       'API_KEY_FOR_BROWSER_RELEASE': api_key,
       'API_KEY_FOR_BROWSER_DEBUG': api_key
@@ -50,7 +50,7 @@ export class AboutPage {
         zoom: 18,
         tilt: 30
       }
-    }
+    };
     this.map = GoogleMaps.create('map', mapOptions);
     let marker: Marker = this.map.addMarkerSync({
       title: 'Eu',
@@ -100,8 +100,10 @@ export class AboutPage {
         this.resp_coords = resp.coords;
         this.latitude = this.resp_coords.latitude;
         this.longitude = this.resp_coords.longitude;
+
         this.accuracy = this.resp_coords.accuracy;
         this.speed = this.resp_coords.speed;
+        this.loadMap();
 
         this.resp_coords = resp.coords;
         console.log(resp);
@@ -116,8 +118,10 @@ export class AboutPage {
         this.resp_coords = resp.coords;
         this.latitude = this.resp_coords.latitude;
         this.longitude = this.resp_coords.longitude;
+
         this.speed = this.resp_coords.speed;
         this.accuracy = this.resp_coords.accuracy;
+        this.loadMap();
       },(error) => {
         console.log(error);
       });
