@@ -64,8 +64,7 @@ export class AboutPage {
     marker.showInfoWindow();
   }
 
-
-
+///aslkfjasfjsalkfjaskl
   takePicture() {
     this.photo = '';
 
