@@ -10,6 +10,8 @@ import {
   CameraPosition,
   MarkerOptions,
   Marker,
+  Circle,
+  CircleOptions,
   Environment
 } from '@ionic-native/google-maps';
 
@@ -47,21 +49,25 @@ export class AboutPage {
           lat: this.latitude,
           lng: this.longitude
         },
-        zoom: 18,
+        zoom: 25,
         tilt: 30
       }
     };
+
+
     this.map = GoogleMaps.create('map', mapOptions);
-    let marker: Marker = this.map.addMarkerSync({
-      title: 'Eu',
-      icon: 'blue',
-      animation: 'DROP',
-      position: {
-        lat: this.latitude,
-        lng: this.longitude
-      }
+    let options: CircleOptions = {
+      'center': {'lat' : this.latitude, 'lng' : this.longitude},
+      'radius': 5,
+      'strokeColor' : '#AA00FF',
+      'strokeWidth': 5,
+      'fillColor' : '#880000'
+    };
+
+    this.map.addCircle(options).then((circle: Circle) => {
+
     });
-    marker.showInfoWindow();
+
   }
 
 ///aslkfjasfjsalkfjaskl
@@ -103,6 +109,7 @@ export class AboutPage {
 
         this.accuracy = this.resp_coords.accuracy;
         this.speed = this.resp_coords.speed;
+
         this.loadMap();
 
         this.resp_coords = resp.coords;
